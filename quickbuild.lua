@@ -2,6 +2,11 @@ local world = World:new('quickbuild');
 local LobbyToBuildArea = Location:new(world, 2, 62, -1902);
 
 
+
+-- Lobby to Area
+--
+
+
 local myTimer = Timer:new("playerCheck", 5 * 20);
 
 -- The minimum co-ords for each axis.
