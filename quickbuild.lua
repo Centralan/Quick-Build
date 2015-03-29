@@ -174,3 +174,32 @@ function qb_test()
 end
 
 registerHook("BLOCK_GAINS_CURRENT", "qb_test", "quickbuild", -1, 62, -1923);
+
+-------------------------------------
+------ List Of items to build ------
+-------------------------------------
+
+-- ToDo: Make the array right. Have it send a message to the play it picked.
+-- This would be the list of items for players to build (Not sure how to list them however, this will need fixing.)
+-- This would happen after a player has been selected and Tp'd to the middle.
+ 
+local qbBuildObjects = {
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!")
+};
+
+local QbBuildRandom = qbBuildObjects[math.random(1, #qbBuildObjects)];
+
