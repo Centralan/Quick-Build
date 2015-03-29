@@ -1,4 +1,4 @@
-local myWorld = World:new('quickbuild');
+local world = World:new('quickbuild');
 local LobbyToBuildArea = Location:new(world, 2, 62, -1902);
 
 
