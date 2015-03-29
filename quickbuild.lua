@@ -1,6 +1,6 @@
------------------------
+------------------------
 ---- CONFIGURATION ----
------------------------
+------------------------
 
 -- The world which the game takes place in.
 local gameWorld = World:new('quickbuild');
