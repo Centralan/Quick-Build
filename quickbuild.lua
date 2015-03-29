@@ -190,7 +190,7 @@ local qbBuildObjects = {
       sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
       sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
       sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      endMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
       sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
       sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
       sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
