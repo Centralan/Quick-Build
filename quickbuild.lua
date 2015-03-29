@@ -152,3 +152,25 @@ end
 
 -- Start out main timer.
 mainTimer:startRepeating();
+
+-----------------------
+------ Effects ------
+-----------------------
+
+
+local qbtestEffectLocations = {
+	Location:new(world, 6.0, 69.0, -1927.0),
+	Location:new(world, 6.0, 69.0, -1928.0),
+	Location:new(world, 3.0, 69.0, -1930.0),
+	Location:new(world, 2.0, 69.0, -1930.0),
+	Location:new(world, -1.0, 69.0, -1928.0),
+	Location:new(world, -1.0, 69.0, -1927.0)
+};
+
+function qb_test()
+	for key, value in pairs(qbtestEffectLocations) do
+		value:playEffect('SPLASH', 40, 200, 5);
+	end
+end
+
+registerHook("BLOCK_GAINS_CURRENT", "qb_test", "quickbuild", -1, 62, -1923);
