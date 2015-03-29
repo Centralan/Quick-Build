@@ -159,12 +159,12 @@ mainTimer:startRepeating();
 
 
 local qbtestEffectLocations = {
-	Location:new(world, 6.0, 69.0, -1927.0),
-	Location:new(world, 6.0, 69.0, -1928.0),
-	Location:new(world, 3.0, 69.0, -1930.0),
-	Location:new(world, 2.0, 69.0, -1930.0),
-	Location:new(world, -1.0, 69.0, -1928.0),
-	Location:new(world, -1.0, 69.0, -1927.0)
+	Location:new(gameWorld, 6.0, 69.0, -1927.0),
+	Location:new(gameWorld, 6.0, 69.0, -1928.0),
+	Location:new(gameWorld, 3.0, 69.0, -1930.0),
+	Location:new(gameWorld, 2.0, 69.0, -1930.0),
+	Location:new(gameWorld, -1.0, 69.0, -1928.0),
+	Location:new(gameWorld, -1.0, 69.0, -1927.0)
 };
 
 function qb_test()
