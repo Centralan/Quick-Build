@@ -131,7 +131,7 @@ function gameCheck()
 			
 			-- Check if this specific player is inside the lobby.
 			-- We also ignore the player who had the last turn to prevent two games in a row for one player.
-			if (lastPlayer == nil or playerName ~= lastPlayer) isWithinBounds(x, y, z, lobbyPosition) then
+			if (lastPlayer == nil or playerName ~= lastPlayer) or isWithinBounds(x, y, z, lobbyPosition) then
 				-- Player is in the lobby, add them to the lobby array.
 				table.insert(lobbyPlayers, player);
 			end
