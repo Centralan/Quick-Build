@@ -20,7 +20,7 @@ local maxPos = {
 
 -- This is called by myTimer every 5 seconds.
 function playerCheck()
-	local worldPlayers = {myWorld:getPlayers()}; -- Get all players within the world.
+	local worldPlayers = {world:getPlayers()}; -- Get all players within the world.
 	
 	-- Loop every player in the world.
 	for index, playerName in pairs(worldPlayers) do
