@@ -3,35 +3,35 @@
 -----------------------
 
 -- The world which the game takes place in.
-local gameWorld = World:new('Code4');
+local gameWorld = World:new('quickbuild');
 
 -- This is how long each game lasts in intervals of 30 seconds. So, 10 = 5 minutes.
 local gameTime = 10;
 
 -- This is the location players will get teleported to inside the lobby.
-local lobbyTeleportLocation = Location:new(gameWorld, 60, 41, 60);
+local lobbyTeleportLocation = Location:new(gameWorld, 2, 68, -1928);
 
 -- This is the location players will get teleported to when it's their turn.
-local gameFieldTeleportLocation = Location:new(gameWorld, 100, 31, 100);
+local gameFieldTeleportLocation = Location:new(gameWorld, 2, 62, -1902);
 
 -- The boundaries of the lobby.
 local lobbyPosition = {
-	minX = 50,
-	minY = 40,
-	minX = 50,
-	maxX = 80,
-	maxY = 50,
-	maxZ = 80
+	minX = -22,
+	minY = 68,
+	minX = -1930,
+	maxX = 26,
+	maxY = 77,
+	maxZ = -1878
 };
 
 -- The boundaries of the game world.
 local gameFieldPosition = {
-	minX = 90,
-	minY = 30,
-	minZ = 90,
-	maxX = 150,
-	maxY = 60,
-	maxZ = 150
+	minX = -12,
+	minY = 60,
+	minZ = -1916,
+	maxX = 16,
+	maxY = 67,
+	maxZ = -1888
 };
 
 -----------------------
