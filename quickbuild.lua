@@ -202,6 +202,7 @@ local qbBuildObjects = {
 };
 
 local QbBuildRandom = qbBuildObjects[math.random(1, #qbBuildObjects)];
+-- ToDo: Needs to be sent to player that is building in the game area.
 
 -------------------------
 ---- Chat Detection ----
@@ -209,7 +210,7 @@ local QbBuildRandom = qbBuildObjects[math.random(1, #qbBuildObjects)];
 
 -- ToDo: When a player in the world says what was built in chat. game ends and a couter for new game starts.
 -- ToDo: Script would repeat its self after game ends.
--- ToDo: Need chat detection to see who guess it right first, make them winner, end game. (Text must match what was sent to the player building)
+-- ToDo: Need chat detection to see who guess it right first, make them winner, end game. (Text must match what was sent to the player building in the build area.)
 
 
 -----------------------
