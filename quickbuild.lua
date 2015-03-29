@@ -1,47 +1,154 @@
-local world = World:new('quickbuild');
-local LobbyToBuildArea = Location:new(world, 2, 62, -1902);
+-----------------------
+---- CONFIGURATION ----
+-----------------------
 
+-- The world which the game takes place in.
+local gameWorld = World:new('Code4');
 
+-- This is how long each game lasts in intervals of 30 seconds. So, 10 = 5 minutes.
+local gameTime = 10;
 
--- Lobby to Area
---
+-- This is the location players will get teleported to inside the lobby.
+local lobbyTeleportLocation = Location:new(gameWorld, 60, 41, 60);
 
+-- This is the location players will get teleported to when it's their turn.
+local gameFieldTeleportLocation = Location:new(gameWorld, 100, 31, 100);
 
-local myTimer = Timer:new("playerCheck", 5 * 20);
-
--- The minimum co-ords for each axis.
-local minPos = {
-	X = -22,
-	Y = 68,
-	Z = -1930
+-- The boundaries of the lobby.
+local lobbyPosition = {
+	minX = 50,
+	minY = 40,
+	minX = 50,
+	maxX = 80,
+	maxY = 50,
+	maxZ = 80
 };
 
--- The maximum co-ords for each axis.
-local maxPos = {
-	X = 26,
-	Y = 77,
-	Z = -1878
+-- The boundaries of the game world.
+local gameFieldPosition = {
+	minX = 90,
+	minY = 30,
+	minZ = 90,
+	maxX = 150,
+	maxY = 60,
+	maxZ = 150
 };
 
--- This is called by myTimer every 5 seconds.
-function playerCheck()
-	local worldPlayers = {world:getPlayers()}; -- Get all players within the world.
+-----------------------
+------ GAME CODE ------
+-----------------------
+
+-- This timer ticks every 30 seconds and handles most of our stuff.
+local mainTimer = Timer:new("gameCheck", 30 * 20);
+
+-- Pointer for the current player in the game field.
+local currentPlayer = nil;
+
+-- Boolean to define if the game is currently running or not.
+local gameRunning = false;
+
+-- The player who did the last match.
+local lastPlayer = nil;
+
+-- This is how long the current match has been running. Automatically handled.
+local gameRuntime = 0;
+
+-- Checks if the given X, Y, Z are within the supplied bounds array.
+-- All bounds arrays need minX, minY, minZ, maxX, maxY, maxZ defined.
+function isWithinBounds(x, y, z, bounds)
+	return x >= bounds.minX and y >= bounds.minY and z >= bounds.minZ and x <= bounds.maxX and y <= bounds.maxY and z <= bounds.maxZ;
+end
+
+-- Calling this function will end the current game.
+function endGame()
+	gameRunning = false; -- Set the game state as not running.
 	
-	-- Loop every player in the world.
-	for index, playerName in pairs(worldPlayers) do
-		-- Give the player a 1 in 5 chance to actually be ported.
-		if math.random(1, 5) == 4 then
-			local player = Player:new(playerName);
-			local _, x, y, z = player:getLocation();
+	-- Check if the player who was in this match is online and valid.
+	if currentPlayer ~= nil and currentPlayer:isOnline() then
+		local worldName, x, y, z = currentPlayer:getLocation();
+		
+		-- Check if the player is still inside the field, no need to teleport them otherwise.
+		if worldName == gameWorld.name and isWithinBounds(x, y, z, gameFieldPosition) then
+			-- Teleport the player to the lobby.
+			currentPlayer:teleport(lobbyTeleportLocation);
+		end
+	end
+	
+	currentPlayer = nil; -- Invalidate the current player pointer.
+end
+
+-- Calling this function will start a new game with the given player.
+function startGame(player)
+	-- Set the game state as running.
+	gameRunning = true;
+	
+	-- Set the current player as the one given.
+	currentPlayer = player;
+	
+	-- Reset the game time.
+	gameRuntime = 0;
+	
+	-- Set this player as the last player.
+	lastPlayer = player.name;
+	
+	-- Teleport the player into the game field.
+	currentPlayer:teleport(gameFieldTeleportLocation);
+end
+
+-- This is called every 30 seconds by mainTimer.
+function gameCheck()
+	-- Check if a game is currently running.
+	if gameRunning then
+		-- A game is currently running.
+		if currentPlayer ~= nil and currentPlayer:isOnline() then
+			-- The player is still in the field.
 			
-			-- Check the player is within the bounds we've set.
-			if x >= minPos.X and y >= minPos.Y and z >= minPos.Z then
-				if x <= maxPos.X and y <= maxPos.Y and z <= maxPos.Z then
-					moveTo = LobbyToBuildArea;
-				end
+			-- Increment how long this game has been running.
+			gameRuntime = gameRuntime + 1;
+			
+			-- Check if the time for this match has run-out.
+			if gameRuntime == gameTime then
+				-- Out of time, ending the game.
+				endGame();
 			end
+		else
+			-- The player has left or disconnected so we end the game.
+			endGame();
+		end
+	else
+		-- Game is not running, let's check the lobby.
+		
+		-- Get all players within the world.
+		local worldPlayers = {myWorld:getPlayers()};
+		
+		-- Empty array for lobby players.
+		local lobbyPlayers = {};
+		
+		-- Loop every player in the world.
+		for index, playerName in pairs(worldPlayers) do
+			local player = Player:new(playerName); -- Player pointer.
+			local _, x, y, z = player:getLocation(); -- Location of the player.
+			
+			-- Check if this specific player is inside the lobby.
+			-- We also ignore the player who had the last turn to prevent two games in a row for one player.
+			if (lastPlayer == nil or playerName ~= lastPlayer) isWithinBounds(x, y, z, lobbyPosition) then
+				-- Player is in the lobby, add them to the lobby array.
+				table.insert(lobbyPlayers, player);
+			end
+		end
+		
+		-- Check if we have two or more players in the lobby.
+		if #lobbyPlayers >= 2 then
+			-- We have two or more players in the lobby.
+			
+			-- Select a random player from the lobby.
+			local randomPlayer = lobbyPlayers[math.random(1, #lobbyPlayers)];
+			
+			-- Start the game.
+			startGame(randomPlayer);
 		end
 	end
 end
 
-myTimer:startRepeating(); -- Start our timer.
+-- Start out main timer.
+mainTimer:startRepeating();
