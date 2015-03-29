@@ -184,21 +184,21 @@ registerHook("BLOCK_GAINS_CURRENT", "qb_test", "quickbuild", -1, 62, -1923);
 -- This would happen after a player has been selected and Tp'd to the middle.
  
 local qbBuildObjects = {
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
-      player:sendMessage("&aIt's your turn to play. Make a &2Bird&a!")
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      endMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!");
+      sendMessage("&aIt's your turn to play. Make a &2Bird&a!")
 };
 
 local QbBuildRandom = qbBuildObjects[math.random(1, #qbBuildObjects)];
