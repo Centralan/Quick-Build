@@ -119,7 +119,7 @@ function gameCheck()
 		-- Game is not running, let's check the lobby.
 		
 		-- Get all players within the world.
-		local worldPlayers = {myWorld:getPlayers()};
+		local worldPlayers = {gameWorld:getPlayers()};
 		
 		-- Empty array for lobby players.
 		local lobbyPlayers = {};
